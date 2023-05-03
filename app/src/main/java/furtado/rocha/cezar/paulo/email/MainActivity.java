@@ -32,14 +32,19 @@ public class MainActivity extends AppCompatActivity {
                 EditText etTexto = (EditText) findViewById(R.id.etTexto);
                 String texto = etTexto.getText().toString();
 
+                // Intencao atribuida apps que possuem a acao de "enviar para"
                 Intent i = new Intent(Intent.ACTION_SENDTO);
 
+                // URI que indica os apps que tem a funcao de enviar e receber email
                 i.setData(Uri.parse("mailto:"));
 
+                // Dados que vamos enviar para a app externa
                 String [] emails = new String[]{email};
                 i.putExtra(Intent.EXTRA_EMAIL, emails);
                 i.putExtra(Intent.EXTRA_SUBJECT, assunto);
                 i.putExtra(Intent.EXTRA_TEXT, texto);
+
+                // tentativa de abrir a aba com os aplicativos que possuem a funcao mailto
 
                 try {
                     startActivity(Intent.createChooser(i, "Escolha o APP"));
